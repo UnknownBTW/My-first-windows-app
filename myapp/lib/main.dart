@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'dart:math' as math;
 
 void main() {
 
@@ -43,19 +44,15 @@ class MyApp extends StatelessWidget {
           ],
         ),
 
-        body: Stack(
-          children: [
-            Container(
-              color: Colors.red,
-              width: 100,
-              height: 100,
-            ),
-            Align(
-              child: Icon(Icons.verified),
-              alignment: Alignment.center,
-            ),
-          ],
-        ),
+        body: ListView.builder(
+          itemBuilder: (_, index){
+            return Container(
+              color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+              width: 500,
+              height: 500,
+            );
+          },
+        )
       )
     );
   }
