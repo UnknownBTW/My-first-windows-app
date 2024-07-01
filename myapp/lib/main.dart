@@ -8,52 +8,49 @@ void main() {
 
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  int count = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(    
+    return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.purple,
-          title: const Text("My new app using"),
+          backgroundColor: Colors.green,
+          title: const Text('Flutter is Fun!'),
         ),
 
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: (){
-            print('Pressed!!');
-          },
-        ),
-
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'business',
-            ),
-             BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'School',
-            ),
-          ],
-        ),
-
-        body: ListView.builder(
-          itemBuilder: (_, index){
-            return Container(
-              color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
-              width: 500,
-              height: 500,
+        body: ElevatedButton(
+          child: Text('About'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => AboutScreen(),
+              ),
             );
           },
-        )
-      )
+        ),
+      ),
+    );
+  }
+}
+
+class AboutScreen extends StatelessWidget{
+  const AboutScreen({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
     );
   }
 }
